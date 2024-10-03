@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class PositiveLoginTests {
 
     @Test
-    public void testLoginFunctionality(){
+    public void testLoginFunctionality() {
 
         WebDriver driver = new ChromeDriver();
 
@@ -26,9 +26,15 @@ public class PositiveLoginTests {
         submitButton.isDisplayed();
         submitButton.click();
 
-        String expectedUrl= "https://practicetestautomation.com/logged-in-successfully/";
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        String expectedUrl = "https://practicetestautomation.com/logged-in-successfully/";
         String actualUrl = driver.getCurrentUrl();
-        Assert.assertEquals(actualUrl,expectedUrl);
+        Assert.assertEquals(actualUrl, expectedUrl);
 
         String expectedMsg = "Congratulations student. You successfully logged in!";
         String pageSource = driver.getPageSource();
