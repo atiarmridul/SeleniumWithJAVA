@@ -28,10 +28,15 @@ public class NegativeLoginTests {
         // Push Submit button
         WebElement submitButton = driver.findElement(By.id("submit"));
         submitButton.click();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
         // Verify error message is displayed
         WebElement errorMessage = driver.findElement(By.id("error"));
-        Assert.assertTrue(errorMessage.isDisplayed());
+        Assert.assertTrue(errorMessage.isDisplayed(),"Error message should be displayed");
 
         // Verify error message text is Your username is invalid!
         String expectedErrorMessage = "Your username is invalid!";
@@ -58,10 +63,15 @@ public class NegativeLoginTests {
         // Push Submit button
         WebElement submitButton = driver.findElement(By.id("submit"));
         submitButton.click();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
         // Verify error message is displayed
         WebElement errorMessage = driver.findElement(By.id("error"));
-        Assert.assertTrue(errorMessage.isDisplayed());
+        Assert.assertTrue(errorMessage.isDisplayed(),"Error message should be displayed");
 
         // Verify error message text is Your password is invalid!
         String expectedErrorMessage = "Your password is invalid!";
