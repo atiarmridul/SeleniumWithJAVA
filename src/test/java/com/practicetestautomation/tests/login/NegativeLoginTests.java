@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,68 +12,62 @@ public class NegativeLoginTests {
 
     @Test
     public void incorrectUsernameTest() {
-        //Open page
-        WebDriver driver = new ChromeDriver();
+        // Open page
+        System.setProperty("webdriver.edge.driver","src/main/resources/msedgedriver.exe");
+        WebDriver driver = new EdgeDriver();
         driver.get("https://practicetestautomation.com/practice-test-login/");
 
-        //Type username incorrectUser into Username field
-        WebElement userNameField = driver.findElement(By.id("username"));
-        userNameField.sendKeys("student123");
+        // Type username incorrectUser into Username field
+        WebElement usernameInput = driver.findElement(By.id("username"));
+        usernameInput.sendKeys("incorrectUser");
 
-        //Type password Password123 into Password field
-        WebElement userPasswordField = driver.findElement(By.id("password"));
-        userPasswordField.sendKeys("Password123");
+        // Type password Password123 into Password field
+        WebElement passwordInput = driver.findElement(By.id("password"));
+        passwordInput.sendKeys("Password123");
 
-        //Push Submit button
+        // Push Submit button
         WebElement submitButton = driver.findElement(By.id("submit"));
-        submitButton.isDisplayed();
         submitButton.click();
 
-        //Verify error message is displayed
-        WebElement errorMessageBox = driver.findElement(By.id("error"));
-        Assert.assertTrue(errorMessageBox.isDisplayed());
+        // Verify error message is displayed
+        WebElement errorMessage = driver.findElement(By.id("error"));
+        Assert.assertTrue(errorMessage.isDisplayed());
 
-        //Verify error message text is Your username is invalid!
+        // Verify error message text is Your username is invalid!
         String expectedErrorMessage = "Your username is invalid!";
-        String actualErrorMessage = errorMessageBox.getText();
+        String actualErrorMessage = errorMessage.getText();
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
 
-
         driver.quit();
-
     }
 
     @Test
     public void incorrectPasswordTest() {
-        //Open page
+        // Open page
         WebDriver driver = new ChromeDriver();
         driver.get("https://practicetestautomation.com/practice-test-login/");
 
-        //Type username incorrectUser into Username field
-        WebElement userNameField = driver.findElement(By.id("username"));
-        userNameField.sendKeys("student");
+        // Type username student into Username field
+        WebElement usernameInput = driver.findElement(By.id("username"));
+        usernameInput.sendKeys("student");
 
-        //Type password Password123 into Password field
-        WebElement userPasswordField = driver.findElement(By.id("password"));
-        userPasswordField.sendKeys("Password123123");
+        // Type password incorrectPassword into Password field
+        WebElement passwordInput = driver.findElement(By.id("password"));
+        passwordInput.sendKeys("incorrectPassword");
 
-        //Push Submit button
+        // Push Submit button
         WebElement submitButton = driver.findElement(By.id("submit"));
-        submitButton.isDisplayed();
         submitButton.click();
 
-        //Verify error message is displayed
-        WebElement errorMessageBox = driver.findElement(By.id("error"));
-        Assert.assertTrue(errorMessageBox.isDisplayed());
+        // Verify error message is displayed
+        WebElement errorMessage = driver.findElement(By.id("error"));
+        Assert.assertTrue(errorMessage.isDisplayed());
 
-        //Verify error message text is Your username is invalid!
+        // Verify error message text is Your password is invalid!
         String expectedErrorMessage = "Your password is invalid!";
-        String actualErrorMessage = errorMessageBox.getText();
+        String actualErrorMessage = errorMessage.getText();
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
 
-
         driver.quit();
-
     }
-
 }
