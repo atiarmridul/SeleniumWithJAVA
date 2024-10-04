@@ -12,6 +12,7 @@
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <suiteXmlFile>FullRegressionSuite.xml</suiteXmlFile>
     </properties>
 
     <build>
@@ -22,7 +23,7 @@
                 <version>3.5.0</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/TestSuits/FullRegressionSuite.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/TestSuits/${suiteXmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
@@ -41,8 +42,6 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.10.2</version>
-
         </dependency>
-
     </dependencies>
 </project>
