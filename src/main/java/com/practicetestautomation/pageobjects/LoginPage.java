@@ -3,14 +3,9 @@ package com.practicetestautomation.pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
+public class LoginPage extends BasePage {
 
-public class LoginPage {
-    private WebDriver driver;
-    private WebDriverWait wait;
     private By usernameInputLocator = By.id("username");
     private By usernamePasswordLocator = By.id("password");
     private By submitButtonLocator = By.id("submit");
@@ -18,8 +13,7 @@ public class LoginPage {
 
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        super(driver);
 
     }
 
@@ -36,15 +30,17 @@ public class LoginPage {
     }
 
 
-    public void executeLogin(String username, String password) {
+    public SuccessfulLoginPage executeLogin(String username, String password) {
 
         driver.findElement(usernameInputLocator).sendKeys(username);
         driver.findElement(usernamePasswordLocator).sendKeys(password);
         driver.findElement(submitButtonLocator).click();
+        return new SuccessfulLoginPage(driver);
+
     }
 
     public String getErrorMessage() {
-        WebElement errorMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessageLocator));
+        WebElement errorMessageElement = waitForElement(errorMessageLocator);
         return errorMessageElement.getText();
     }
 
