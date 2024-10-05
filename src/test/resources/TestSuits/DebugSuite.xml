@@ -2,11 +2,11 @@
 
 <suite name="Debug Test Suite" verbose="1">
 
-    <test name="No Such Element Exceptions Tests">
+    <test name="Timeout Exceptions Tests">
         <classes>
             <class name="com.practicetestautomation.tests.exceptions.ExceptionsTests">
                 <methods>
-                    <include name="noSuchElementExceptionTest"/>
+                    <include name="timeoutExceptionTest"/>
                 </methods>
             </class>
         </classes>
