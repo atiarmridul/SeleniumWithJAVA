@@ -6,10 +6,10 @@
         <parameter name="browser" value="safari"></parameter>
 
         <!--        <groups>-->
-<!--            <run>-->
-<!--                <include name="positive"></include>-->
-<!--            </run>-->
-<!--        </groups>-->
+        <!--            <run>-->
+        <!--                <include name="positive"></include>-->
+        <!--            </run>-->
+        <!--        </groups>-->
         <classes>
             <class name="com.practicetestautomation.tests.login.LoginTests">
                 <methods>
@@ -18,9 +18,6 @@
             </class>
         </classes>
     </test>
-
-
-
 
 
     <test name="Incorrect Username Login Tests">
@@ -39,8 +36,6 @@
     </test>
 
 
-
-
     <test name="Incorrect Password Login Tests">
         <parameter name="browser" value="firefox"></parameter>
         <parameter name="username" value="student"></parameter>
@@ -55,7 +50,6 @@
             </class>
         </classes>
     </test>
-
 
 
 </suite>

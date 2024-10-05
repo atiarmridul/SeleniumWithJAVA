@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
+
 import java.time.Duration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,7 +50,7 @@ public class LoginTests {
     }
 
     @Test(groups = {"positive", "smoke", "regression"})
-    public void testLoginFunctionality()  {
+    public void testLoginFunctionality() {
         logger.info("Starting logging functionality");
         WebElement userNameField = driver.findElement(By.id("username"));
         logger.info("Type Username");

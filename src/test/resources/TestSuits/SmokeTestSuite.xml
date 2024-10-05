@@ -12,9 +12,9 @@
 
         <classes>
             <class name="com.practicetestautomation.tests.login.LoginTests">
-<!--                <methods>-->
-<!--                    <include name="testLoginFunctionality"/>-->
-<!--                </methods>-->
+                <!--                <methods>-->
+                <!--                    <include name="testLoginFunctionality"/>-->
+                <!--                </methods>-->
             </class>
         </classes>
     </test>
