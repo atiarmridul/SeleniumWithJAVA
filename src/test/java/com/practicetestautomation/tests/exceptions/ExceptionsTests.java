@@ -1,5 +1,6 @@
 package com.practicetestautomation.tests.exceptions;
 
+import com.practicetestautomation.pageobjects.ExceptionsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -53,58 +54,40 @@ public class ExceptionsTests {
 
     @Test
     public void noSuchElementExceptionTest() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        // Click Add button
-        WebElement addBtn = driver.findElement(By.id("add_btn"));
-        addBtn.click();
 
-        // Verify Row 2 input field is displayed
-        WebElement row2InputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='row2']/input")));
-        Assert.assertTrue(row2InputField.isDisplayed(), "The text field is not displayed");
+        ExceptionsPage exceptionsPage = new ExceptionsPage(driver);
+        exceptionsPage.visit();
+        exceptionsPage.pushAddButton();
+        Assert.assertTrue(exceptionsPage.isRowTwoDisplayedAfterWait(), "The Row 2 input field is not displayed");
 
     }
 
     @Test
     public void timeoutExceptionTest() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        // Click Add button
-        WebElement addBtn = driver.findElement(By.id("add_btn"));
-        addBtn.click();
 
-        // Verify Row 2 input field is displayed
-        WebElement row2InputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='row2']/input")));
-        Assert.assertTrue(row2InputField.isDisplayed(), "The text field is not displayed");
+        ExceptionsPage exceptionsPage = new ExceptionsPage(driver);
+        exceptionsPage.visit();
+//        exceptionsPage.pushAddButton();
+        Assert.assertTrue(exceptionsPage.isRowTwoDisplayedAfterWait(), "The Row 2 input field is not displayed");
 
     }
 
     @Test
     public void elementNotInteractableExceptionTest() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        // Click Add button
-        WebElement addBtn = driver.findElement(By.id("add_btn"));
-        addBtn.click();
 
-        // Verify Row 2 input field is displayed
-        WebElement row2InputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='row2']/input")));
-        //Type text into the second input field
-        row2InputField.sendKeys("Test");
-        //Push Save button using locator By.name(“Save”)
-
-        //WebElement saveBtn = driver.findElement(By.name("Save"));
-        WebElement saveBtn = driver.findElement(By.xpath("//div[@id=\"row2\"]//button[@name=\"Save\"]"));
-
-
-        saveBtn.click();
-
-        WebElement successMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("confirmation")));
+        ExceptionsPage exceptionsPage = new ExceptionsPage(driver);
+        exceptionsPage.visit();
+        exceptionsPage.pushAddButton();
+        exceptionsPage.isRowTwoDisplayedAfterWait();
+        exceptionsPage.enterTextInRow2("demo demo");
+        exceptionsPage.saveRow2();
+        String actualMessage = exceptionsPage.getSuccessMessage();
         String expectedMessage = "Row 2 was saved";
-        String actualMessage = successMessage.getText();
-
         //Verify text saved
         Assert.assertEquals(actualMessage, expectedMessage, "Asserting failed beacuse the text is not saved");
 
-
     }
+
     @Test
     public void staleElementReferenceExceptionTest() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -114,7 +97,7 @@ public class ExceptionsTests {
         WebElement addBtn = driver.findElement(By.id("add_btn"));
         addBtn.click();
         //Verify instruction text element is no longer displayed
-        Assert.assertTrue(wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("instructions"))),"Instruction Text is still displayed ");
+        Assert.assertTrue(wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("instructions"))), "Instruction Text is still displayed ");
     }
 
 }
